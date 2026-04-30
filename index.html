@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Surprise 🎂</title>
+
+<!-- 🎨 Premium Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+
+  background: linear-gradient(270deg, #ff4da6, #6a5acd, #00c9ff, #ffcc00);
+  background-size: 800% 800%;
+  animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* 🔍 Scanner */
+#scanner {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#scanner h2 {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 2px;
+}
+
+.scan-box {
+  width: 220px;
+  height: 220px;
+  border: 3px solid white;
+  position: relative;
+  border-radius: 10px;
+}
+
+.line {
+  width: 100%;
+  height: 4px;
+  background: white;
+  position: absolute;
+  animation: scan 2s infinite;
+}
+
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 216px; }
+}
+
+/* 🎂 Content */
+#content {
+  display: none;
+  padding: 20px;
+  animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.9);}
+  to {opacity: 1; transform: scale(1);}
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 48px;
+  text-shadow: 0 0 10px rgba(255,255,255,0.7),
+               0 0 20px rgba(255,0,150,0.7);
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.8;
+  max-width: 500px;
+  margin: auto;
+}
+
+/* 🎁 Button */
+button {
+  padding: 12px 28px;
+  border: none;
+  background: black;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: white;
+  color: black;
+}
+
+/* 📸 Gallery */
+#gallery {
+  display: none;
+  margin-top: 30px;
+}
+
+#gallery img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin: 10px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.6);
+  transition: transform 0.4s;
+}
+
+#gallery img:hover {
+  transform: scale(1.1);
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔍 Scanner -->
+<div id="scanner">
+  <h2>🔍 Scanning Identity...</h2>
+  <div class="scan-box">
+    <div class="line"></div>
+  </div>
+</div>
+
+<!-- 🎂 Content -->
+<div id="content">
+  <h1>🎂 Happy Birthday</h1>
+
+  <p>
+  🔍 Scan Complete... <br>
+  Identity Verified ✅ <br><br>
+
+  To someone truly special — <br><br>
+
+  You are not just a part of my life,  
+  you are one of the most beautiful reasons behind my smiles.  
+
+  Your presence makes everything brighter,  
+  your happiness means more than you know.  
+
+  On this special day, I just wish  
+  that life gives you everything your heart desires ❤️  
+
+  ✨ Stay amazing. Stay you. Always. ✨ <br><br>
+
+  🎉 Happy Birthday!
+  </p>
+
+  <button onclick="goToSurprise()">Tap for Surprise 🎁</button>
+  <script>
+  function goToSurprise() {
+  window.location.href = "surprise.html";
+}
+</script>
+
+<!-- 🎆 Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+setTimeout(() => {
+  document.getElementById("scanner").style.display = "none";
+  document.getElementById("content").style.display = "block";
+}, 4000);
+
+function showSurprise() {
+  document.getElementById("gallery").style.display = "block";
+  document.getElementById("music").play();
+
+  let duration = 3 * 1000;
+  let end = Date.now() + duration;
+
+  (function frame() {
+    confetti({
+      particleCount: 6,
+      spread: 100,
+      origin: {
+        x: Math.random(),
+        y: Math.random() - 0.2
+      }
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
+}
+</script>
+
+
+</body>
+</html>
